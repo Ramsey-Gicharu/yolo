@@ -1,5 +1,5 @@
 #Defining the image we wnat to build from
-FROM node:alpine 
+FROM node:alpine
 
 #Specifying the work directory
 WORKDIR /app
