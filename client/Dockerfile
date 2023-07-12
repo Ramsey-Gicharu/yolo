@@ -1,20 +1,20 @@
-#Defining the image we wnat to build from
+#specify a base image
 FROM node:alpine
 
-#Specifying the work directory
+#specify the working directory
 WORKDIR /app
 
-#Copying the required dependencies file
-COPY package.json package.json
+#copying the required dependencies file
+COPY package.json .
 
-#Installing Dependencies 
+#installing dependencies
 RUN npm install
 
-#Copying App source code
-COPY .  .
+#copying app source code
+COPY . .
 
-#Specifying the Container Port
+#specifying the container port
 EXPOSE 3000
 
-#Command to start the application
-CMD ["npm", "start"]
+#command to start the application
+CMD [ "npm", "start" ]
