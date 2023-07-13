@@ -1,20 +1,26 @@
-#specify a base image
-FROM node:alpine
+# Use an official Node.js runtime as the base image
+FROM node:14-alpine
 
-#specify the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-#copying the required dependencies file
-COPY package.json .
+# Copy the package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-#installing dependencies
+# Install the project dependencies
 RUN npm install
 
-#copying app source code
+# Copy the application code to the working directory
 COPY . .
 
-#specifying the container port
+# Build the React app for production
+RUN npm run build
+
+# Expose the desired port (e.g., 3000)
 EXPOSE 3000
 
-#command to start the application
- CMD ["npm", "start"]
+# Set environment variables
+ENV REACT_APP_BACKEND_URL=http://localhost:5000/api/products
+
+# Start the React app
+CMD ["npm", "start"]
