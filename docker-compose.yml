@@ -1,49 +1,44 @@
+version: '3'
+
 services:
-  server:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: yolo-server
-    container_name: yolo-node-server
-    command: node server.js
-    volumes:
-      - ./server/:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - "5000:5000"
-    depends_on:
-      - mongodb
-    networks:
-      - app-network
-  mongodb:
-    image: mongo
-    volumes:
-      - data-volume:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - app-network
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: yolo-client
-    container_name: yolo-react-client
-    command: npm start
-    volumes:
-      - ./client/:/usr/app
-      - /usr/app/node_modules
-    depends_on:
-      - server
     ports:
-      - "3000:3000"
+      - 3000:80
+    volumes:
+      - ./client:/app/client
     networks:
-      - app-network
+      - project-network
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+      
+    volumes:
+      - ./backend:/app/backend
+    networks:
+      - project-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - project-network
 
 networks:
-    app-network:
-        driver: bridge
-
-volumes:
-    data-volume:
-    node_modules:
+  project-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
