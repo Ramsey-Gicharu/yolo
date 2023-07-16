@@ -1,16 +1,23 @@
-# Sets the base image of the application to the node’s official image.
-FROM node:alpine
+# Use an official Node.js runtime as the base image
+FROM node:14-alpine
 
-# Sets the Working Directory as "/server"
-WORKDIR /server
-# Copies the package.json file into "/server" and runs npm i
-COPY package.json /server
-RUN npm i
-# Copies the entire source code into "/server"
-COPY . /server
+# Set the working directory inside the container
+WORKDIR /app/backend
 
-# Specifies the port the node app will be running on
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install the dependencies
+RUN npm install
+
+# Copy the remaining app files to the container
+COPY . .
+
+# Set the environment variable for the frontend URL
+ENV REACT_APP_FRONTEND_URL=http://localhost:3000
+
+# Expose the container's port
 EXPOSE 5000
 
-# Runs "node server.js" after the above step is completed
-CMD ["node", "server.js"]
+# Start the Node.js server
+CMD ["npm", "start"]

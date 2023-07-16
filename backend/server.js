@@ -7,7 +7,7 @@ const upload = multer();
 const productRoute = require('./routes/api/productRoute');
 
 // Connecting to the Database
-let mongodb_url = 'mongodb://localhost/';
+let mongodb_url = 'mongodb://mongo:27017/';
 let dbName = 'yolomy';
 
 // define a url to connect to the database
@@ -16,7 +16,7 @@ mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true  }
 let db = mongoose.connection;
 
 // Check Connection
-db.once('open', ()=>{
+db.once('open', ()=>{ 
     console.log('Database connected successfully')
 })
 
@@ -35,6 +35,7 @@ app.use(express.json())
 app.use(upload.array()); 
 
 // Cors 
+const cors = require('cors');
 app.use(cors());
 
 // Use Route
