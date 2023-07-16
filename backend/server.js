@@ -35,7 +35,6 @@ app.use(express.json())
 app.use(upload.array()); 
 
 // Cors 
-const cors = require('cors');
 app.use(cors());
 
 // Use Route
