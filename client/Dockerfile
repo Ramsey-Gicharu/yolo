@@ -2,22 +2,24 @@
 FROM node:14-alpine
 
 # Set the working directory inside the container
-WORKDIR /app
-
-# Copy the package.json and package-lock.json files to the working directory
+WORKDIR /app/frontend
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install app dependencies
+# Install the dependencies
 RUN npm install
 
-# Copy the entire app directory to the working directory
+# Copy the remaining app files to the container
 COPY . .
 
-# Set environment variables, if required
-# ENV REACT_APP_API_URL=https://api.example.com
+# Set the environment variable for the backend URL
+ENV REACT_APP_BACKEND_URL=http://localhost:5000/api/products
+ENV REACT_APP_MONGODB_URL=mongodb://mongo:27017/yolomy
 
-# Expose the desired port (default is 3000 for a React app)
+# Expose the container's port
 EXPOSE 3000
 
-# Start the React app (use the "start" script defined in package.json)
+# Build the React app
+RUN npm run build
+
 CMD ["npm", "start"]
