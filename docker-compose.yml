@@ -2,9 +2,7 @@ version: '3'
 
 services:
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: rgicharu/frontend-project-image:v1.0.0
     ports:
       - 3000:80
     volumes:
@@ -15,9 +13,7 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: rgicharu/backend-project-image:v1.0.0
     ports:
       - 5000:5000
       
