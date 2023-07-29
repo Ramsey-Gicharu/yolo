@@ -1,0 +1,8 @@
+---
+- name: Deploy Docker containers
+  hosts: all
+  become: true
+  roles:
+    - role: client
+    - role: backend
+    - role: mongo

@@ -13,6 +13,13 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "generic/ubuntu2004"
+  config.vm.network "private_network", type: "dhcp"
+
+  #Forward ports for Docker (client, backend, and mongo)
+  config.vm.network "forwarded_port", guest: 80, host: 8080 # Client
+  config.vm.network "forwarded_port", guest: 3000, host: 3000 # Backend
+  config.vm.network "forwarded_port", guest: 27017, host: 27017 #Mongo
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -70,6 +77,16 @@ Vagrant.configure("2") do |config|
   # Provisioning configuration for Ansible.
    # Provisioning configuration for Ansible.
  config.vm.provision "ansible" do |ansible|
-  ansible.playbook = "playbook.yml"
+  ansible.playbook = "ansible/playbook.yml"
  end
+
+  # Sync the project folder with /vagrant inside the VM
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
+  # Give the VM sufficient resources (adjust as needed)
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+
 end

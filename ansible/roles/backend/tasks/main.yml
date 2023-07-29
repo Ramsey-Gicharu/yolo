@@ -10,3 +10,4 @@
     image: rgicharu/backend-project-image:v1.0.0
     ports:
       - "5000:5000"
+    state: started

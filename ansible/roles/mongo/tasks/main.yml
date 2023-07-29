@@ -6,7 +6,8 @@
 
 - name: Run the MongoDB container
   docker_container:
-    name: mern-mongodb
+    name: mern-mongod
     image: mongo
     ports:
       - "27017:27017"
+    state: started
