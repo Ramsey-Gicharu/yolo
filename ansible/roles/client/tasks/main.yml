@@ -1,0 +1,12 @@
+---
+- name: Pull the client Docker image from Docker Hub
+  docker_image:
+    name: rgicharu/frontend-project-image:v1.0.0
+    state: present
+
+- name: Run the client container
+  docker_container:
+    name: mern-client
+    image: rgicharu/frontend-project-image:v1.0.0
+    ports:
+      - "3000:80"
