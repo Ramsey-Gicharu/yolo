@@ -1,0 +1,12 @@
+---
+- name: Pull the backend Docker image from Docker Hub
+  docker_image:
+    name: rgicharu/backend-project-image:v1.0.0
+    state: present
+
+- name: Run the backend container
+  docker_container:
+    name: mern-backend
+    image: rgicharu/backend-project-image:v1.0.0
+    ports:
+      - "5000:5000"
