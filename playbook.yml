@@ -67,9 +67,46 @@
         repo: "https://github.com/Ramsey-Gicharu/yolo.git"
         dest: /home/vagrant/mern-app
         clone: yes
+        force: yes
 
-    # Run Docker Compose for the MERN application
-    - name: Run Docker Compose for MERN application
-      command: docker-compose -f /home/vagrant/mern-app/docker-compose.yml up -d
+    # Install Node.js and npm
+    - name: Install Node.js and npm
+      become: yes
+      apt:
+        name: ['nodejs', 'npm']
+        state: present
+
+     # Install MongoDB client (needed for Ansible to manage MongoDB container)
+    - name: Install MongoDB client
+      apt:
+        name: mongodb-clients
+        state: present
+
+     # Install Mongoose
+    - name: Install Mongoose
+      npm:
+        name: mongoose
+        global: yes
+
+    # Install Node.js dependencies for backend   
+    - name: Install Node.js dependencies for backend
+      command: npm install
       args:
-        creates: /home/vagrant/mern-app
+        chdir: /home/vagrant/mern-app/backend
+
+      # Run Docker Compose for the MERN application
+    - name: Run Docker Compose for MERN application
+      command: docker-compose up -d
+      args:
+        chdir: /home/vagrant/mern-app
+      async: 300
+      poll: 0
+      ignore_errors: yes
+
+    # Wait for backend container to be up and running
+    - name: Wait for backend container to be up and running
+      wait_for:
+        host: localhost
+        port: 5000
+        delay: 5
+        timeout: 300

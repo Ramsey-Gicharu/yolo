@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
   # SHELL
   config.vm.network "forwarded_port", guest: 3000, host: 3000 # For frontend
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # For backend
-  config.vm.network "forwarded_port", guest: 27017, host: 27017 # For database
+  config.vm.network "forwarded_port", guest: 27018, host: 27017 # For database
 
     # Provision with Ansible
     config.vm.provision "ansible" do |ansible|
