@@ -69,6 +69,12 @@
         clone: yes
         force: yes
 
+        # Remove MongoDB data directory
+    - name: Remove MongoDB data directory
+      file:
+        path: /home/vagrant/mern-app/data
+        state: absent
+
     # Install Node.js and npm
     - name: Install Node.js and npm
       become: yes
