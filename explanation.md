@@ -104,9 +104,9 @@ I did a vagrant init with the generic 22.04 ubuntu base image
 6) Enabled and started the docker services
 7) I installed dependencies needed for docker in vagrant i.e python
 8) I then cloned my project repository and set up a directory for it on the virtual machine 
-9) Performing tests I already had data volumes in my repository and I realised from research this made my mongo container crush thus from research I found a solution to creating an ansible playbook task  that could enable automatic deletion of the data volume at vagrant up --provison command
-10) I also wrote down a task to install npm and node as well as moongose in the vagrant virtual machine while running npm install within the backend folder in the virtual machie to ensure my backend was properly configured with all dependencies.
-11) I wrote ddown a task to run the containers automatically once the virtual machine is up and provisioned allowing the end user to access the web application form the host machine  by simply typing localhost:3000 on their browser and esnuring data persistence through correct cinfiguration of the containers running from docker compose.
+9) Performing tests I already had data volumes in my repository and I realised from research this made my mongo container crush thus from research I found a solution to create an ansible playbook task  that could enable automatic deletion of the data volume at vagrant up --provison command
+10) I also wrote down a task to install npm and node as well as moongose in the vagrant virtual machine while running npm install within the backend folder in the virtual machine to ensure my backend was properly configured with all dependencies.
+11) I wrote down a task to run the containers automatically once the virtual machine is up and provisioned allowing the end user to access the web application form the host machine  by simply typing localhost:3000 on their browser and esnuring data persistence through correct cinfiguration of the containers running from docker compose.
 # step 3
 Created a hosts file and a ansible.cfg file to allow for more hosts and greater host management if the need ever arises as it is best practices to have this.
 
