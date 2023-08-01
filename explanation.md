@@ -91,3 +91,23 @@ https://hub.docker.com/r/rgicharu/backend-project-image
 # Dockerhub Frontend Image link
 https://hub.docker.com/r/rgicharu/frontend-project-image
 
+# Vagrant Virtual Machine provisioning with Ansible to run dockerized MERN APP 
+
+# step One
+I did a vagrant init with the generic 22.04 ubuntu base image 
+# step two
+1) I worked on the play book first updating the cache.
+2) Fetching the docker repository
+3) Updated the cache 
+4) Downloaded docker and docker compose on virtual machine
+5) Added vagrant user to the docker group to allow the virtual machine user to run docker commands without sudo
+6) Enabled and started the docker services
+7) I installed dependencies needed for docker in vagrant i.e python
+8) I then cloned my project repository and set up a directory for it on the virtual machine 
+9) Performing tests I already had data volumes in my repository and I realised from research this made my mongo container crush thus from research I found a solution to creating an ansible playbook task  that could enable automatic deletion of the data volume at vagrant up --provison command
+10) I also wrote down a task to install npm and node as well as moongose in the vagrant virtual machine while running npm install within the backend folder in the virtual machie to ensure my backend was properly configured with all dependencies.
+11) I wrote ddown a task to run the containers automatically once the virtual machine is up and provisioned allowing the end user to access the web application form the host machine  by simply typing localhost:3000 on their browser and esnuring data persistence through correct cinfiguration of the containers running from docker compose.
+# step 3
+Created a hosts file and a ansible.cfg file to allow for more hosts and greater host management if the need ever arises as it is best practices to have this.
+
+
