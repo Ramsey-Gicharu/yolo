@@ -17,3 +17,6 @@ spec:
           image: us-central1-docker.pkg.dev/final-ip/yolo-repo/backend-side:v1.0.0
           ports:
             - containerPort: 5000
+          env:
+            - name: MONGO_URL
+              value: "mongodb://mongo-service:27017/yolomy"

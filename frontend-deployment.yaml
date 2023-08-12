@@ -16,7 +16,7 @@ spec:
         - name: frontend
           image: us-central1-docker.pkg.dev/final-ip/yolo-repo/client-side:v1.0.0
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: REACT_APP_API_URL
               value: "http://backend-service:5000/api/products"
