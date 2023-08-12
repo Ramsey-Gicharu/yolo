@@ -17,3 +17,9 @@ spec:
           image: us-central1-docker.pkg.dev/final-ip/yolo-repo/client-side:v1.0.0
           ports:
             - containerPort: 80
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://backend-service:5000/api/products"
+            - name: REACT_APP_MONGODB_URL
+              value: "mongodb://mongo-service:27017/yolomy"
+
