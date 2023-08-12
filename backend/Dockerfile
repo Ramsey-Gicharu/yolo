@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install the dependencies
 RUN npm install
 
+# Install Express and MongoDB driver
+RUN npm install express mongodb --save
+
 # Copy the remaining app files to the container
 COPY . .
 
@@ -21,3 +24,4 @@ EXPOSE 5000
 
 # Start the Node.js server
 CMD ["npm", "start"]
+
