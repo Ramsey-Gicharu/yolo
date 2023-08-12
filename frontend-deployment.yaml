@@ -16,4 +16,4 @@ spec:
         - name: frontend
           image: us-central1-docker.pkg.dev/final-ip/yolo-repo/client-side:v1.0.0
           ports:
-            - containerPort: 3000
+            - containerPort: 80
