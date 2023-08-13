@@ -19,4 +19,5 @@ spec:
             - containerPort: 5000
           env:
             - name: MONGO_URL
-              value: "mongodb://mongo-service:27017/yolomy"
+              value: "mongodb://34.118.227.101/yolomy"
+
