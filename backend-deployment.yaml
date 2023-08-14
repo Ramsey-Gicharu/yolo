@@ -18,6 +18,6 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: MONGO_URL
-              value: "mongodb://34.118.227.101/yolomy"
+            - name: REACT_APP_MONGODB_URL
+              value: "mongodb://mongo-service:27017/yolomy" # Update this to match the MongoDB service and database name
 

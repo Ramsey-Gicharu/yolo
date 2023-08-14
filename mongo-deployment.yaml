@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: us-central1-docker.pkg.dev/final-ip/yolo-repo/mongo-gke:v1.0.0
+          image: mongo:latest
           ports:
             - containerPort: 27017
+
