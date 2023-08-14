@@ -110,4 +110,16 @@ I did a vagrant init with the generic 22.04 ubuntu base image
 # step 3
 Created a hosts file and a ansible.cfg file to allow for more hosts and greater host management if the need ever arises as it is best practices to have this.
 
+#Google Kubenetes Cluster
+#step 1
+I created a new project and named it final-ip
+I enabled the Google Kubernetes Api Engine to have kubernetes set up for the project
+I enabled the ARtifact registry API to save my images within the GCP
 
+#step 2
+I then build my docker images using the front and backend dockerfiles taging them according to the google tagging convection and pushing the tagged images to the Artifact registry.
+I also pulled the mongo latest image form dockerhub and tagged it within the same convection.
+
+#step 3
+I then created deployment and service files for the backend, frontend and database exposing the Frontend service to the public by setting the type of service as LoadBalancer.
+Accessing my service from the external Ip generated from the LoadBalancer service of the frontend
